@@ -8,8 +8,7 @@ ndarray对象可通过在数组索引中使用 `np.newaxis` (可简写为`None`)
 
 ```python
 >>> import numpy as np
->>> foo = np.array([[1, 1, 4], 
-... 								[5, 1, 4]])
+>>> foo = np.array([[1, 1, 4], [5, 1, 4]])
 >>> foo.shape
 (2, 3)
 >>> foo[None].shape  # expand axis 0
@@ -27,28 +26,27 @@ ndarray对象可通过在数组索引中使用 `np.newaxis` (可简写为`None`)
 广播规则：当对两个ndarray对象进行一般操作时，从右到左比较每一条轴上的大小，当每一条轴上大小都相等或其中一个为1时，判定他们为互相对应。
 
 ```python
->>> foo = np.array([[1, 1, 4], 
-...                 [5, 1, 4]])
+>>> foo = np.array([[1, 1, 4], [5, 1, 4]])
 >>> bar1 = np.array([[1, 2, 0]])
 >>> bar2 = np.array([[2], [1]])
 >>> foo.shape
-*(2, 3)*
+(2, 3)
 >>> foo * foo  # same shape
-*[[ 1  1 16]
- [25  1 16]]*
+[[ 1  1 16]
+ [25  1 16]]
 >>> bar1.shape
-*(1, 3)*
+(1, 3)
 >>> foo + bar1  # broadcast along axis 0
-*[[2 3 4]
- [6 3 4]]*
+[[2 3 4]
+ [6 3 4]]
 >>> bar2.shape
-*(2, 1)*
+(2, 1)
 >>> foo / bar2  # broadcast along axis 1
-*[[0.5 0.5 2. ]
- [5.  1.  4. ]]*
+[[0.5 0.5 2. ]
+ [5.  1.  4. ]]
 >>> -1 * foo  # broadcast along all axes
-*[[-1 -1 -4]
- [-5 -1 -4]]*
+[[-1 -1 -4]
+ [-5 -1 -4]]
 ```
 
 练习1 - 画很多五角星的端点
