@@ -2,7 +2,7 @@
 title: Numpy之维度与broadcast
 ---
 
-<!--https://yuchen-xiyue.github.io/notes/programming/numpy-dimension-broadcast.html-->
+<!--https://yuchen-xiyue.github.io/2022/08/05/numpy-dimension-broadcast/-->
 
 
 
@@ -74,4 +74,4 @@ ndarray对象可通过在数组索引中使用 `np.newaxis` (可简写为`None`)
 >>> plt.show()
 ```
 
-![Result Output](./imgs/Figure_1.png)
+![Result Output](/_posts/imgs/Figure_1.png)
