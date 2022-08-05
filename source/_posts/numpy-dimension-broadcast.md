@@ -74,4 +74,4 @@ ndarray对象可通过在数组索引中使用 `np.newaxis` (可简写为`None`)
 >>> plt.show()
 ```
 
-![Result Output](https://yuchen-xiyue.github.io/_posts/imgs/Figure_1.png)
+![Result Output](https://yuchen-xiyue.github.io/images/Figure_1.png)
