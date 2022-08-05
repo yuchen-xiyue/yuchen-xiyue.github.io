@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Numpy之维度与broadcast | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Dimension extensionndarray对象可通过在数组索引中使用 np.newaxis (可简写为None)来指定需要扩充的轴： 12345678910&gt;&gt;&gt; import numpy as np&gt;&gt;&gt; foo &#x3D; np.array([[1, 1, 4], [5, 1, 4]])&gt;&gt;&gt; foo.shape(2, 3)&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numpy之维度与broadcast">
+<meta property="og:url" content="http://example.com/2022/08/05/numpy-dimension-broadcast/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Dimension extensionndarray对象可通过在数组索引中使用 np.newaxis (可简写为None)来指定需要扩充的轴： 12345678910&gt;&gt;&gt; import numpy as np&gt;&gt;&gt; foo &#x3D; np.array([[1, 1, 4], [5, 1, 4]])&gt;&gt;&gt; foo.shape(2, 3)&amp;gt">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/imgs/Figure_1.png">
+<meta property="article:published_time" content="2022-08-05T22:28:55.425Z">
+<meta property="article:modified_time" content="2022-08-05T22:28:55.425Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/imgs/Figure_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-numpy-dimension-broadcast" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/05/numpy-dimension-broadcast/" class="article-date">
+  <time class="dt-published" datetime="2022-08-05T22:28:55.425Z" itemprop="datePublished">2022-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Numpy之维度与broadcast
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <!--https://yuchen-xiyue.github.io/notes/programming/numpy-dimension-broadcast.html-->
+
+
+
+<h2 id="Dimension-extension"><a href="#Dimension-extension" class="headerlink" title="Dimension extension"></a>Dimension extension</h2><p>ndarray对象可通过在数组索引中使用 <code>np.newaxis</code> (可简写为<code>None</code>)来指定需要扩充的轴：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo.shape</span><br><span class="line">(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo[<span class="literal">None</span>].shape  <span class="comment"># expand axis 0</span></span><br><span class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo[..., <span class="literal">None</span>].shape  <span class="comment"># expand axis -1</span></span><br><span class="line">(<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo[:, <span class="literal">None</span>, :].shape  <span class="comment"># expand axis 1</span></span><br><span class="line">(<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Broadcast"><a href="#Broadcast" class="headerlink" title="Broadcast"></a>Broadcast</h2><blockquote>
+<p>General Broadcasting Rules: When operating on two arrays, NumPy compares their shapes element-wise. It starts with the trailing (i.e. rightmost) dimensions and works its way left. Two dimensions are compatible when 1. they are equal, or 2. one of them is 1.</p>
+</blockquote>
+<p>广播规则：当对两个ndarray对象进行一般操作时，从右到左比较每一条轴上的大小，当每一条轴上大小都相等或其中一个为1时，判定他们为互相对应。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bar1 = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bar2 = np.array([[<span class="number">2</span>], [<span class="number">1</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo.shape</span><br><span class="line">(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo * foo  <span class="comment"># same shape</span></span><br><span class="line">[[ <span class="number">1</span>  <span class="number">1</span> <span class="number">16</span>]</span><br><span class="line"> [<span class="number">25</span>  <span class="number">1</span> <span class="number">16</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bar1.shape</span><br><span class="line">(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo + bar1  <span class="comment"># broadcast along axis 0</span></span><br><span class="line">[[<span class="number">2</span> <span class="number">3</span> <span class="number">4</span>]</span><br><span class="line"> [<span class="number">6</span> <span class="number">3</span> <span class="number">4</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bar2.shape</span><br><span class="line">(<span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo / bar2  <span class="comment"># broadcast along axis 1</span></span><br><span class="line">[[<span class="number">0.5</span> <span class="number">0.5</span> <span class="number">2.</span> ]</span><br><span class="line"> [<span class="number">5.</span>  <span class="number">1.</span>  <span class="number">4.</span> ]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>-<span class="number">1</span> * foo  <span class="comment"># broadcast along all axes</span></span><br><span class="line">[[-<span class="number">1</span> -<span class="number">1</span> -<span class="number">4</span>]</span><br><span class="line"> [-<span class="number">5</span> -<span class="number">1</span> -<span class="number">4</span>]]</span><br></pre></td></tr></table></figure>
+
+<p>练习1 - 画很多五角星的端点</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">R</span>(<span class="params">angle</span>):</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    c, s = np.cos(angle), np.sin(angle)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    <span class="keyword">return</span> np.array([[c, -s], [s, c]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">matmul</span>(<span class="params">a, b</span>):</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    <span class="keyword">return</span> np.einsum(<span class="string">&#x27;ij...,jk...-&gt;ik...&#x27;</span>, a , b)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pentagram = matmul(R(np.arange(<span class="number">5</span>)*<span class="number">0.4</span>*np.pi), np.array([<span class="number">0</span>, <span class="number">1</span>])[:, <span class="literal">None</span>, <span class="literal">None</span>])  <span class="comment"># (2, 1, 5)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>H, W, interval = <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coords = np.mgrid[<span class="number">0</span>: H, <span class="number">0</span>: W] * interval <span class="comment"># (2, H, W)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rot_matrix = R(np.random.randn(H * W))  <span class="comment"># (2, 2, H*W)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = matmul(rot_matrix[:, :, <span class="literal">None</span>, :], pentagram[:, :, :, <span class="literal">None</span>])  <span class="comment"># (2, 1, 5, H*W)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = X + coords.reshape((<span class="number">2</span>, -<span class="number">1</span>))[:, <span class="literal">None</span>, <span class="literal">None</span>, :]  <span class="comment"># (2, 1, 5, H*W)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = X.reshape((<span class="number">2</span>, -<span class="number">1</span>))  <span class="comment"># (2, 5*H*W)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>plt.scatter(X[<span class="number">1</span>, :], X[<span class="number">0</span>, :])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>plt.gca().axis(<span class="string">&#x27;equal&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/imgs/Figure_1.png" alt="Result Output"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/05/numpy-dimension-broadcast/" data-id="cl6h1h0fy0001a4ng8s5g538v" data-title="Numpy之维度与broadcast" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/08/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/05/numpy-dimension-broadcast/">Numpy之维度与broadcast</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/05/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
