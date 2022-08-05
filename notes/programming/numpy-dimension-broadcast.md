@@ -57,7 +57,7 @@ ndarray对象可通过在数组索引中使用 `np.newaxis` (可简写为`None`)
 >>>     c, s = np.cos(angle), np.sin(angle)
 >>>     return np.array([[c, -s], [s, c]])
 >>> def matmul(a, b):
-...     return np.einsum('ij...,jk...->ik...', a , b)
+>>>     return np.einsum('ij...,jk...->ik...', a , b)
 >>> pentagram = matmul(R(np.arange(5)*0.4*np.pi), np.array([0, 1])[:, None, None])  # (2, 1, 5)
 >>> H, W, interval = 3, 4, 5
 >>> coords = np.mgrid[0: H, 0: W] * interval # (2, H, W)
