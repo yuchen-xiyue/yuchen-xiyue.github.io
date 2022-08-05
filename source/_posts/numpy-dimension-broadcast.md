@@ -1,7 +1,6 @@
 ---
 title: Numpy之维度与broadcast
 ---
-# Numpy之维度与broadcast
 
 <!--https://yuchen-xiyue.github.io/notes/programming/numpy-dimension-broadcast.html-->
 
