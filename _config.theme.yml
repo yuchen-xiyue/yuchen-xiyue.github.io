@@ -148,4 +148,3 @@ cdn:
   lightgallery_css: //cdn.jsdelivr.net/npm/lightgallery.js@1.1.3/dist/css/lightgallery.min.css
   lightgallery_js: //cdn.jsdelivr.net/npm/lightgallery.js@1.1.3/dist/js/lightgallery.min.js
   aplayer: //cdn.jsdelivr.net/npm/svelte-aplayer/dist/wc/svelte-aplayer.umd.js
- 
