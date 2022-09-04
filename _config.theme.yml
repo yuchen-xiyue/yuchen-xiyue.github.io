@@ -22,7 +22,7 @@ menu_icons:
   about: icon-cup
 
 site:
-  favicon: /images/favicon.ico
+  favicon: /images/avatar.jpg
   #manifest:
   site_verification:
 #    google:
@@ -78,7 +78,7 @@ footer:
 
 profile:
   enabled: true # Whether to show profile bar
-  avatar: https://yuchen-xiyue.github.io/images/avatar.jpg
+  avatar: /images/avatar.jpg
   gravatar: MyEmailAddress@example.com # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
   author: Gigetsu
   author_title: PhD Student in Computer Science
@@ -105,10 +105,8 @@ profile:
     Wechat: Null
   # My Personal Labels
   labels:
-    - 前端
-    - Node.js
-    - Golang
-    - Linux日常使用
+    - Python
+    - 绘画
   skills:
     Git: ★★★☆☆
     Gulp: ★★★☆☆
