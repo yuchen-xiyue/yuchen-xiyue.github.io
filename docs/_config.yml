@@ -6,7 +6,9 @@ author:
 # The `>` after `description:` means to ignore line-breaks until next key.
 # If you want to omit the line-break after the end of text, use `>-` instead.
 description: >
-  Yuchen Wu's homepage, for research, codes, painting and all interesting things. 
+  Yuchen Wu's homepage for all my interests. 
+  
+  武宇晨的个人主页，展示我热爱的一切
 
 # Build settings
 
