@@ -19,7 +19,8 @@ I am Yuchen Wu, I am currently a PhD student at the department of Computer Scien
     <!-- - Keywords:  -->
 
 ### Work Experience
-- (2023-now) Vertically Integrated Projects at University of Bath, Creating immersive training experiences in virtual reality. 
+- (2023-now) Vertically Integrated Projects at University of Bath
+    - Creating immersive training experiences in virtual reality. 
     <!-- - Keywords: Virtual Reality & Argumented Reality -->
 - (2021-now) Teaching Assistant (TA) at University of Bath
     - Fundamentals of Visual Computing, Artificial Intelligence, Principles of Programming, Databases
