@@ -8,10 +8,10 @@
 layout: home
 ---
 
-I am Yuchen Wu, I am currently a PhD student at the department of Computer Science, University of Bath. I graduated form Beijing University of Technology. 
+I am Yuchen Wu, I am currently a PhD student at the department of Computer Science, University of Bath. My research interests in image style transfer. I graduated form Beijing University of Technology majored in Software Engineering. 
 
 ### Education
-- (2021-now) **Doctor of Philosophy (PhD)**, under supervision by Prof. Peter M. Hall, Computer Science Department, the University of Bath. 
+- (2021-now) **Doctor of Philosophy (PhD)**, under supervision by Prof. Peter M. Hall, Department of Computer Science, the University of Bath. 
     <!-- - Keywords: Computer Vision, Image Process, Computer Graphics, Deep learning, Machine Learning -->
 - (2020-2020) Summer Program in Machine Learning & Deep Learning, Massachusetts Institute of Technology (MIT).
     <!-- - Keywords: Deep Learning, Machine Learning, Natural Language Process, Image Process, Probability and Statistic, Linear Algebra -->
