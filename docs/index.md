@@ -21,7 +21,9 @@ I am Yuchen Wu, I am currently a PhD student at the department of Computer Scien
 ### Work Experience
 - (2023-now) Vertically Integrated Projects at University of Bath, Creating immersive training experiences in virtual reality. 
     <!-- - Keywords: Virtual Reality & Argumented Reality -->
-- (2021-now) Teaching Assistant (TA) in modules: Fundamentals of Visual Computing, Artificial Intelligence, Principles of Programming, Databases
+- (2021-now) Teaching Assistant (TA) at University of Bath
+    - Fundamentals of Visual Computing, Artificial Intelligence, Principles of Programming, Databases
+- (2020-2020) Teaching Assistant (TA) at Bejing University of Technology
 
 ### Technical Skills
 - Programming Languages: Python, Java, MATLAB, C/C++
