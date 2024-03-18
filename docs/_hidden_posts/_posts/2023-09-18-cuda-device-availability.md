@@ -2,12 +2,12 @@
 
 {% highlight shell %}
 nvidia-smi
-{% end highlight %}
+{% endhighlight %}
 
 {% highlight shell %}
 CUDA_VISIBLE_DEVICES=0,2,3 python main.py
-{% end highlight %}
+{% endhighlight %}
 
 {% highlight python %}
 DEVICE = 'cuda' # 'cuda:0'
-{% end highlight %}
+{% endhighlight %}
