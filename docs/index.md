@@ -7,7 +7,7 @@
 #
 layout: home
 ---
-# Welcome to my Blog! 欢迎来到我的博客
+
 ## About Me 
 I am currently pursuing PhD degree in Computer Science at [the University of Bath](https://www.bath.ac.uk/). 
 

@@ -1,4 +1,4 @@
-title: SELENA
+title: Ethereal
 author:
   name: Yuchen Wu
   email: yw3283@bath.ac.uk
@@ -12,10 +12,12 @@ description: >
 # Build settings
 
 theme: minima
+# remote_theme: daattali/beautiful-jekyll@6.0.1
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  # - jekyll-remote-theme
 
 # Theme-specific settings
 
@@ -47,8 +49,8 @@ minima:
 # If you want to link only specific pages in your header, uncomment this and add the path to the pages in
 # order as they should show up.
 #
-# header_pages:
-#   - about.md
+header_pages:
+  - about.md
 
 # Set to `true` to show excerpts on the homepage.
 #
